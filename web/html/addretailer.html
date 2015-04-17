@@ -1,0 +1,26 @@
+</br>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form class="form-inline">
+            <div class="form-group  form-text">
+                <label for="name">Name : </label></br>
+                <input ng-model="retailer.name" type="text" class="form-control form-input" id="name">
+            </div>
+            <div class="form-group  form-text">
+                <label for="phone">Phone : </label></br>
+                <input ng-model="retailer.code" type="text" class="form-control" id="phone">
+            </div>
+        </form>
+        <br>
+        <div style="float: right;" class="form-group">
+            <button ng-click="cancel()" type="button" class="btn btn-danger" aria-label="Left Align">
+                <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                CANCEL
+            </button>
+            <button ng-click="add()" type="button" class="btn btn-primary" aria-label="Left Align">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                ADD
+            </button>
+        </div>
+    </div>
+</div>

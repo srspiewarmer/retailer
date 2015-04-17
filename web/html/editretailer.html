@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h2>RETAILER : {{retailerId}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Information</div>
+            <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group  form-text">
+                    <label for="phone">Phone:</label>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+                <div class="form-group  form-text">
+                    <button type="button" class="btn btn-primary" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        SAVE
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Assigned Stores</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input ng-model="searchBox" type="text" class="form-control" placeholder="Search...."/>
+        </div>
+        <table class="table table-font">
+            <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Time Zone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="store in stores">
+                <td class="edit-td-ret"><span class="glyphicon glyphicon-trash edit-cursor"
+                                              ng-click=""></span></td>
+                <td>{{store.id}}</td>
+                <td>{{store.code}}</td>
+                <td>{{store.name}}</td>
+                <td>{{store.timeZone}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="float: right;">
+        <button ng-click="go('/store/addnewstore/' + retailerId)" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            ADD NEW STORE
+        </button>
+    </div>
+    <div>
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+    <div style="float: right;" class="form-group">
+        <button ng-click="" type="button" class="btn btn-danger" aria-label="Left Align">
+            <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+            BACK
+        </button>
+    </div>
+</div>

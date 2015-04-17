@@ -1,0 +1,173 @@
+<div class="container">
+    <div class="page-header">
+        <h2>NEW STORE FOR RETAILER : {{retailerId}}</h2>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Store Information</div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group form-text">
+                    <label for="name">Name : </label></br>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group form-text">
+                    <label for="code">Store Number : </label></br>
+                    <input type="text" class="form-control form-input" id="code">
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group form-text">
+                    <label for="timezone">Time Zone : </label></br>
+                    <select id="timezone" class="form-control">
+                        <option value="-1">SELECT TIMEZONE &nbsp;&nbsp;</option>
+                        <option value="one">Australia/Melbourne</option>
+                        <option value="two">Australia/Sidney</option>
+                        <option value="three">Australia/Tazmania</option>
+                        <option value="four">Asia/Manila</option>
+                        <option value="five">Asia/Singapore</option>
+                    </select>
+                </div>
+                <div class="form-group form-text">
+                    <label for="storeGroup">Store Group : </label></br>
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-describedby="basic-addon1" id="storeGroup" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+                    </div>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group form-text">
+                    <label for="authRequired">Require Authentication : </label></br>
+                    <div class="input-group">
+                        <input type="checkbox" style="width: 34px; height: 34px;" class="form-control" id="authRequired"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Attributes</div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="attribute1">Attribute 1 : </label></br>
+                    <input type="text" class="form-control form-input" id="attribute1"/>
+                </div>
+                <div class="form-group  form-text">
+                    <label for="attribute2">Attribute 2 : </label></br>
+                    <input type="text" class="form-control"  id="attribute2"/>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="attribute3">Attribute 3 : </label></br>
+                    <input type="text" class="form-control form-input"  id="attribute3"/>
+                </div>
+                <div class="form-group  form-text">
+                    <label for="attribute4">Attribute 4 : </label></br>
+                    <input type="text" class="form-control" id="attribute4"/>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="attribute5">Attribute 5 : </label></br>
+                    <input type="text" class="form-control form-input" id="attribute5"/>
+                </div>
+                <div class="form-group  form-text">
+                    <label for="attribute6">Attribute 6 : </label></br>
+                    <input type="text" class="form-control" id="attribute6"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Agent</div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="agentId">Agent ID : </label></br>
+                    <input type="text" class="form-control form-input" id="agentId"/>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="sequence">Sequence : </label></br>
+                    <input type="number" class="form-control form-input"  id="sequence"/>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group  form-text">
+                    <label for="password">Password : </label></br>
+                    <input type="password" class="form-control form-input"  id="password"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Operator</div>
+        <div class="panel-body">
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Devices</div>
+        <div class="panel-body">
+            <table class="table borderless table-font">
+                <thead>
+                <th>IP Address</th>
+                <th>Serial Number</th>
+                <th></th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="device in devices">
+                    <td>{{device.ipAddress}}</td>
+                    <td>{{device.serialNumber}}</td>
+                    <td><span style="float: right;" class="glyphicon glyphicon-remove edit-cursor"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="float: right;" class="form-group">
+                <button ng-click="assignGroup()" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+                    ASSIGN DEVICES
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Groups</div>
+        <div class="panel-body">
+            <table class="table borderless">
+                <thead>
+                    <th></th>
+                    <th>Description</th>
+                    <th>Timezone</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="group in groups">
+                        <td><span class="glyphicon glyphicon-info-sign edit-cursor"></span></td>
+                        <td>{{group.description}}</td>
+                        <td>{{group.timeZone}}</td>
+                        <td><span style="float: right;" class="glyphicon glyphicon-remove edit-cursor"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="float: right;" class="form-group">
+                <button ng-click="assignGroup()" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+                    ASSIGN GROUPS
+                </button>
+            </div>
+        </div>
+    </div>
+    <div style="float: right;" class="form-group">
+        <button ng-click="" type="button" class="btn btn-danger" aria-label="Left Align">
+            <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+            BACK
+        </button>
+        <button type="button" class="btn btn-primary" aria-label="Left Align">
+            <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+            SAVE
+        </button>
+    </div>
+</div>

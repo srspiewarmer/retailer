@@ -1,0 +1,37 @@
+<div class="container">
+    <div style="float: right;">
+        <button ng-click="addNewRetailer()" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            ADD NEW RETAILER
+        </button>
+    </div>
+    <div class="result">
+        <div>
+            <h2>RETAILERS</h2>
+            <p>List of existing retailers</p>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input ng-model="searchBox" type="text" class="form-control" placeholder="Search...."/>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="retailer in retailers | filter:searchBox">
+                <td class="edit-td">
+                <a href="#/retailer/{{retailer.id}}"><span class="glyphicon glyphicon-edit edit-cursor"></span></a>
+                <span class="glyphicon glyphicon-trash edit-cursor"
+                  ng-click="deleteRetailer(retailer.id)"></span></td>
+                <td>{{retailer.name}}</td>
+                <td>{{retailer.phone}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
