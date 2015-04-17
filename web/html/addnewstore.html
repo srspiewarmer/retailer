@@ -1,6 +1,9 @@
 <div class="container">
-    <div class="page-header">
+    <div class="page-header" ng-show="isEdit === false">
         <h2>NEW STORE FOR RETAILER : {{retailerId}}</h2>
+    </div>
+    <div class="page-header" ng-show="isEdit === true">
+        <h2>STORE ID : {{storeId}}</h2>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">Store Information</div>
@@ -8,30 +11,26 @@
             <form class="form-inline">
                 <div class="form-group form-text">
                     <label for="name">Name : </label></br>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" ng-model="store.name" class="form-control" id="name">
                 </div>
                 <div class="form-group form-text">
                     <label for="code">Store Number : </label></br>
-                    <input type="text" class="form-control form-input" id="code">
+                    <input type="text" ng-model="store.code" class="form-control form-input" id="code">
                 </div>
             </form>
             <form class="form-inline">
                 <div class="form-group form-text">
-                    <label for="timezone">Time Zone : </label></br>
-                    <select id="timezone" class="form-control">
-                        <option value="-1">SELECT TIMEZONE &nbsp;&nbsp;</option>
-                        <option value="one">Australia/Melbourne</option>
-                        <option value="two">Australia/Sidney</option>
-                        <option value="three">Australia/Tazmania</option>
-                        <option value="four">Asia/Manila</option>
-                        <option value="five">Asia/Singapore</option>
-                    </select>
+                    <label for="timeZone">Time Zone : </label></br>
+                    <div class="input-group">
+                        <input ng-click="changeTimeZone()" ng-model="store.timeZone" type="text" class="form-control edit-cursor" aria-describedby="basic-addon1" id="timeZone" readonly/>
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
                 </div>
                 <div class="form-group form-text">
                     <label for="storeGroup">Store Group : </label></br>
                     <div class="input-group">
-                        <input type="text" class="form-control" aria-describedby="basic-addon1" id="storeGroup" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-plus"></span></span>
+                        <input type="text" ng-model="store.storeGroup" class="form-control edit-cursor" aria-describedby="basic-addon1" id="storeGroup" readonly/>
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
                 </div>
             </form>
@@ -39,7 +38,7 @@
                 <div class="form-group form-text">
                     <label for="authRequired">Require Authentication : </label></br>
                     <div class="input-group">
-                        <input type="checkbox" style="width: 34px; height: 34px;" class="form-control" id="authRequired"/>
+                        <input type="checkbox" ng-model="store.reqAuth" style="width: 34px; height: 34px;" class="form-control" id="authRequired"/>
                     </div>
                 </div>
             </form>
@@ -51,31 +50,31 @@
             <form class="form-inline">
                 <div class="form-group  form-text">
                     <label for="attribute1">Attribute 1 : </label></br>
-                    <input type="text" class="form-control form-input" id="attribute1"/>
+                    <input type="text" class="form-control form-input" ng-model="store.attribute1" id="attribute1"/>
                 </div>
                 <div class="form-group  form-text">
                     <label for="attribute2">Attribute 2 : </label></br>
-                    <input type="text" class="form-control"  id="attribute2"/>
+                    <input type="text" class="form-control" ng-model="store.attribute2" id="attribute2"/>
                 </div>
             </form>
             <form class="form-inline">
                 <div class="form-group  form-text">
                     <label for="attribute3">Attribute 3 : </label></br>
-                    <input type="text" class="form-control form-input"  id="attribute3"/>
+                    <input type="text" class="form-control form-input" ng-model="store.attribute3" id="attribute3"/>
                 </div>
                 <div class="form-group  form-text">
                     <label for="attribute4">Attribute 4 : </label></br>
-                    <input type="text" class="form-control" id="attribute4"/>
+                    <input type="text" class="form-control" ng-model="store.attribute4" id="attribute4"/>
                 </div>
             </form>
             <form class="form-inline">
                 <div class="form-group  form-text">
                     <label for="attribute5">Attribute 5 : </label></br>
-                    <input type="text" class="form-control form-input" id="attribute5"/>
+                    <input type="text" class="form-control form-input" ng-model="store.attribute5" id="attribute5"/>
                 </div>
                 <div class="form-group  form-text">
                     <label for="attribute6">Attribute 6 : </label></br>
-                    <input type="text" class="form-control" id="attribute6"/>
+                    <input type="text" class="form-control" ng-model="store.attribute6" id="attribute6"/>
                 </div>
             </form>
         </div>
@@ -86,32 +85,70 @@
             <form class="form-inline">
                 <div class="form-group  form-text">
                     <label for="agentId">Agent ID : </label></br>
-                    <input type="text" class="form-control form-input" id="agentId"/>
+                    <input type="text" ng-model="store.agentId" class="form-control form-input" id="agentId"/>
                 </div>
             </form>
             <form class="form-inline">
                 <div class="form-group  form-text">
                     <label for="sequence">Sequence : </label></br>
-                    <input type="number" class="form-control form-input"  id="sequence"/>
+                    <input type="number" ng-model="store.sequence" class="form-control form-input" value="1"  id="sequence"/>
                 </div>
             </form>
-            <form class="form-inline">
-                <div class="form-group  form-text">
-                    <label for="password">Password : </label></br>
-                    <input type="password" class="form-control form-input"  id="password"/>
-                </div>
-            </form>
+            <div ng-show="isEdit === false">
+                <form class="form-inline">
+                    <div class="form-group  form-text">
+                        <label for="password">Password : </label></br>
+                        <input type="password" ng-model="store.password" class="form-control form-input"  id="password"/>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group  form-text">
+                        <label for="confirmPassword">Confirm password : </label></br>
+                        <input type="password" ng-model="store.confirmPassword" class="form-control form-input"  id="confirmPassword"/>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="isEdit === true">
+                <form class="form-inline">
+                    <div class="form-group form-text">
+                        <label for="password">Password : </label>
+                        <a class="edit-cursor">Change password</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Operator</div>
+    <div class="panel panel-default" ng-show="isEdit === true">
+        <div class="panel-heading">Operators</div>
         <div class="panel-body">
+            <table class="table borderless">
+                <thead>
+                <th>Operator ID</th>
+                <th>Name</th>
+                <th>Administrator</th>
+                <th></th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="operator in operators">
+                    <td>{{operator.operatorId}}</td>
+                    <td>{{operator.name}}</td>
+                    <td><span ng-show="operator.isAdmin === true" class="glyphicon glyphicon-ok"></span></td>
+                    <td><span style="float: right;" class="glyphicon glyphicon-remove edit-cursor"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="float: right;" class="form-group">
+                <button ng-click="addOperator()" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+                    ADD OPERATOR
+                </button>
+            </div>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="isEdit === true">
         <div class="panel-heading">Devices</div>
         <div class="panel-body">
-            <table class="table borderless table-font">
+            <table class="table borderless">
                 <thead>
                 <th>IP Address</th>
                 <th>Serial Number</th>
@@ -126,14 +163,14 @@
                 </tbody>
             </table>
             <div style="float: right;" class="form-group">
-                <button ng-click="assignGroup()" type="button" class="btn btn-default">
+                <button ng-click="assignDevice()" type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
                     ASSIGN DEVICES
                 </button>
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="isEdit === true">
         <div class="panel-heading">Groups</div>
         <div class="panel-body">
             <table class="table borderless">

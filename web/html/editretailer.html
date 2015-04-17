@@ -26,18 +26,16 @@
             </form>
         </div>
     </div>
-
     <div class="panel panel-default">
         <div class="panel-heading">Assigned Stores</div>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
             <input ng-model="searchBox" type="text" class="form-control" placeholder="Search...."/>
         </div>
-        <table class="table table-font">
+        <table class="table">
             <thead>
             <tr>
                 <th></th>
-                <th>ID</th>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Time Zone</th>
@@ -45,9 +43,10 @@
             </thead>
             <tbody>
             <tr ng-repeat="store in stores">
-                <td class="edit-td-ret"><span class="glyphicon glyphicon-trash edit-cursor"
-                                              ng-click=""></span></td>
-                <td>{{store.id}}</td>
+                <td class="edit-td">
+                    <a href="#/store/editstore/{{store.id}}"><span class="glyphicon glyphicon-edit edit-cursor"></span></a>
+                    <span class="glyphicon glyphicon-trash edit-cursor" ng-click=""></span>
+                </td>
                 <td>{{store.code}}</td>
                 <td>{{store.name}}</td>
                 <td>{{store.timeZone}}</td>

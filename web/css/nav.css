@@ -178,3 +178,8 @@ section{
 .borderless th, .borderless td {
     border: none !important;
 }
+
+.rt-checkbox {
+    width: 34px;
+    height: 34px;
+}
